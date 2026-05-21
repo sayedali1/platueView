@@ -1,0 +1,346 @@
+<header
+  class="
+    fixed
+    top-0
+    left-0
+
+    w-full
+
+    z-[999]
+
+    px-4
+    md:px-8
+    lg:px-12
+
+    py-1
+md:py-2
+
+    transition-all
+    duration-700
+  "
+
+  [ngClass]="{
+
+    'translate-y-0 opacity-100':
+      showNavbar,
+
+    '-translate-y-full opacity-0':
+      !showNavbar
+
+  }"
+>
+
+  <!-- NAVBAR -->
+  <nav
+    class="
+      flex
+      items-center
+      justify-between
+
+      rounded-full
+
+      border
+
+      px-5
+      md:px-7
+
+      py-2
+      md:py-2.5
+
+      transition-all
+      duration-700
+    "
+
+    [ngClass]="{
+
+      'bg-transparent border-transparent':
+        !isScrolled,
+
+      'bg-black/30 backdrop-blur-2xl border-white/10 shadow-[0_0_40px_rgba(0,0,0,0.25)]':
+        isScrolled
+
+    }"
+  >
+
+    <!-- LOGO -->
+<!-- LOGO -->
+<div
+  class="
+    flex
+    items-center
+
+    shrink-0
+  "
+>
+
+  <img
+    src="images/logo_2.png"
+
+    alt="Plateau View Logo"
+
+    class="
+      w-[110px]
+      md:w-[145px]
+      lg:w-[180px]
+
+      h-auto
+
+      object-cover
+    "
+  />
+
+</div>
+
+    <!-- DESKTOP LINKS -->
+    <ul
+      class="
+        hidden
+        lg:flex
+
+        items-center
+
+        gap-8
+
+        text-white
+      "
+    >
+
+      <!-- LINK -->
+      <li
+        *ngFor="
+          let item of navItems
+        "
+      >
+
+        <button
+
+          (click)="
+            scrollToSection(
+              item.target
+            )
+          "
+
+          class="
+            relative
+
+            text-base
+            md:text-lg
+
+            font-medium
+            tracking-wide
+
+            transition-all
+            duration-500
+          "
+
+          [ngClass]="{
+
+            'text-red-900':
+              activeSection === item.target,
+
+            'text-white/70 hover:text-white':
+              activeSection !== item.target
+
+          }"
+        >
+
+          {{ item.label }}
+
+          <!-- ACTIVE LINE -->
+          <span
+
+            class="
+              absolute
+
+              left-0
+              -bottom-2
+
+              h-[2px]
+
+              bg-red-900
+
+              transition-all
+              duration-500
+            "
+
+            [ngClass]="{
+
+              'w-full opacity-100':
+                activeSection === item.target,
+
+              'w-0 opacity-0':
+                activeSection !== item.target
+
+            }"
+          >
+          </span>
+
+        </button>
+
+      </li>
+
+    </ul>
+
+    <!-- CTA -->
+    <button
+      class="
+        hidden
+        lg:block
+
+        rounded-full
+
+        bg-red-900
+
+        text-white
+
+        px-8
+        py-3
+
+        text-base
+        md:text-lg
+
+        font-bold
+        tracking-wide
+
+        transition-all
+        duration-500
+
+        hover:scale-105
+        hover:bg-red-800
+        hover:shadow-lg
+        hover:shadow-red-900/50
+      "
+    >
+      احجز الآن
+    </button>
+
+    <!-- MOBILE BUTTON -->
+    <button
+
+      (click)="toggleMenu()"
+
+      class="
+        lg:hidden
+
+        text-white
+
+        text-3xl
+      "
+    >
+      ☰
+    </button>
+
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div
+
+    *ngIf="isMenuOpen"
+
+    class="
+      lg:hidden
+
+      mt-4
+
+      rounded-[28px]
+
+      border
+      border-white/10
+
+      bg-black/40
+
+      backdrop-blur-2xl
+
+      p-6
+    "
+  >
+
+    <ul
+      class="
+        flex
+        flex-col
+
+        gap-6
+
+        text-right
+      "
+    >
+
+      <!-- MOBILE LINK -->
+      <li
+        *ngFor="
+          let item of navItems
+        "
+      >
+
+        <button
+
+          (click)="
+            scrollToSection(
+              item.target
+            )
+          "
+
+          class="
+            text-base
+            md:text-lg
+
+            font-medium
+            tracking-wide
+
+            transition-all
+            duration-300
+          "
+
+          [ngClass]="{
+
+            'text-red-900':
+              activeSection === item.target,
+
+            'text-white/80 hover:text-white':
+              activeSection !== item.target
+
+          }"
+        >
+          {{ item.label }}
+        </button>
+
+      </li>
+
+    </ul>
+
+    <!-- MOBILE CTA -->
+    <button
+      class="
+        w-full
+
+        mt-6
+
+        rounded-full
+
+        bg-red-900
+
+        text-white
+
+        py-3
+
+        text-base
+        md:text-lg
+
+        font-bold
+        tracking-wide
+
+        transition-all
+        duration-500
+
+        hover:bg-red-800
+        hover:shadow-lg
+        hover:shadow-red-900/50
+      "
+    >
+      احجز الآن
+    </button>
+
+  </div>
+
+</header>

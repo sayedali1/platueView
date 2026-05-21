@@ -1,0 +1,19 @@
+@keyframes crossfade {
+
+  from {
+    opacity: 0;
+    transform: scale(1.04);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+}
+
+.animate-crossfade {
+
+  animation: crossfade 700ms ease forwards;
+
+}

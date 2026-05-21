@@ -1,0 +1,349 @@
+<section
+  class="
+    h-screen
+
+    snap-start
+
+    px-2
+    md:px-3
+
+    py-2
+    md:py-3
+  "
+  id="location"
+>
+
+  <!-- MAIN CONTAINER -->
+  <div
+    class="
+      relative
+
+      h-full
+
+      overflow-hidden
+
+      rounded-[35px]
+
+      border
+      border-white/5
+
+      bg-black
+    "
+  >
+
+    <!-- LIVE MAP -->
+    <div
+
+      id="luxuryMap"
+
+      class="
+        absolute
+        inset-0
+
+        z-0
+
+        contrast-110
+
+        brightness-95
+
+        saturate-125
+
+        scale-110
+      "
+    >
+    </div>
+
+    <!-- CONTENT -->
+    <div
+      class="
+        relative
+        z-20
+
+        h-full
+
+        flex
+        items-center
+        justify-end
+
+        p-4
+        md:p-8
+        lg:p-10
+      "
+    >
+
+      <!-- FLOATING GLASS PANEL -->
+      <div
+        class="
+          w-full
+          max-w-[480px]
+
+          text-right
+
+          rounded-[34px]
+
+          border
+          border-white/15
+
+          bg-black/45
+
+          backdrop-blur-2xl
+
+          shadow-[0_0_80px_rgba(0,0,0,0.45)]
+
+          p-7
+          md:p-8
+        "
+      >
+
+        <!-- SMALL LABEL -->
+        <p
+          class="
+            text-[#B89B72]
+
+            text-xs
+            md:text-sm
+
+            mb-3
+          "
+        >
+          الموقع الاستراتيجي
+        </p>
+
+        <!-- TITLE -->
+        <h2
+          class="
+            text-4xl
+            md:text-5xl
+            lg:text-6xl
+
+            font-bold
+
+            leading-[1.15]
+
+            text-white
+          "
+        >
+          في قلب
+          <br />
+          كل ما تحتاجه
+        </h2>
+
+        <!-- DESCRIPTION -->
+        <p
+          class="
+            mt-6
+
+            text-sm
+            md:text-base
+
+            leading-8
+            md:leading-9
+
+            text-white/90
+          "
+        >
+          يتميز المشروع بموقع استراتيجي
+          يربط بين المنيا القديمة والمنيا الجديدة،
+          بالقرب من أهم المعالم والمحاور الرئيسية،
+          مع إطلالة مباشرة على كوبري النيل
+          وأبرز الوجهات الحيوية بالمدينة.
+        </p>
+
+        <!-- LOCATION CARDS -->
+        <div
+          class="
+            mt-10
+
+            flex
+            flex-col
+
+            gap-3
+          "
+        >
+
+          <!-- CARD -->
+          <div
+            *ngFor="
+              let point of points;
+              let i = index
+            "
+
+            class="
+              group
+
+              relative
+
+              overflow-hidden
+
+              rounded-[24px]
+
+              border
+
+              cursor-pointer
+
+              backdrop-blur-2xl
+
+              p-4
+              md:p-5
+
+              transition-all
+              duration-500
+            "
+
+            [ngClass]="{
+
+              'bg-black/50 border-[#B89B72]/30 shadow-[0_0_40px_rgba(184,155,114,0.12)]':
+                activePoint === i,
+
+              'bg-black/30 border-white/10 hover:bg-black/40 hover:border-[#B89B72]/20':
+                activePoint !== i
+
+            }"
+
+            (mouseenter)="changePoint(i)"
+            (click)="changePoint(i)"
+          >
+
+            <!-- CARD GLOW -->
+            <div
+              class="
+                absolute
+
+                top-[-120px]
+                right-[-120px]
+
+                w-[240px]
+                h-[240px]
+
+                rounded-full
+
+                bg-[#7B001C]/10
+
+                blur-[120px]
+
+                opacity-0
+
+                transition-all
+                duration-700
+
+                group-hover:opacity-100
+              "
+            ></div>
+
+            <!-- CONTENT -->
+            <div
+              class="
+                relative
+                z-10
+
+                flex
+                items-start
+                justify-between
+
+                gap-4
+              "
+            >
+
+              <!-- NUMBER -->
+              <div
+                class="
+                  text-[#B89B72]
+
+                  text-xs
+                  md:text-sm
+
+                  font-medium
+                "
+              >
+                0{{ i + 1 }}
+              </div>
+
+              <!-- TEXT -->
+              <div
+                class="
+                  text-right
+                "
+              >
+
+                <h3
+                  class="
+                    text-lg
+                    md:text-xl
+
+                    font-bold
+
+                    text-white
+                  "
+                >
+                  {{ point.title }}
+                </h3>
+
+                <p
+                  class="
+                    mt-1
+
+                    text-sm
+
+                    leading-6
+
+                    text-white/70
+                  "
+                >
+                  {{ point.subtitle }}
+                </p>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- BOTTOM INFO -->
+        <div
+          class="
+            mt-8
+
+            flex
+            items-center
+            justify-end
+
+            gap-3
+          "
+        >
+
+          <!-- PULSE -->
+          <div
+            class="
+              w-2.5
+              h-2.5
+
+              rounded-full
+
+              bg-[#B89B72]
+
+              animate-pulse
+            "
+          ></div>
+
+          <!-- TEXT -->
+          <p
+            class="
+              text-sm
+
+              text-white/80
+            "
+          >
+            حي شرق المنيا — منطقة ذات تميز حضاري
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>

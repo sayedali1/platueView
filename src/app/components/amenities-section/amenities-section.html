@@ -1,0 +1,362 @@
+<section
+  class="
+    relative
+
+    h-screen
+
+    snap-start
+
+    px-2
+    md:px-3
+
+    py-2
+    md:py-3
+  "
+  id="amenities"
+>
+
+  <!-- Main Container -->
+  <div
+    class="
+      relative
+
+      h-full
+
+      rounded-[35px]
+
+      overflow-hidden
+
+      bg-black
+    "
+  >
+
+    <!-- Dynamic Background -->
+    <div
+      class="
+        absolute
+        inset-0
+
+        z-0
+
+        overflow-hidden
+      "
+    >
+
+      <img
+        *ngIf="imageUpdateCounter"
+        [src]="getCurrentImage()"
+        [style.opacity]="isTransitioning ? 0 : 1"
+        [style.transition]="'opacity 0.5s ease-in-out'"
+        class="
+          w-full
+          h-full
+
+          object-cover
+          object-center
+        "
+      />
+
+    </div>
+
+    <!-- Dark Overlay -->
+    <div
+      class="
+        absolute
+        inset-0
+
+        bg-black/55
+
+        z-10
+      "
+    ></div>
+
+    <!-- Gradient Overlay -->
+    <div
+      class="
+        absolute
+        inset-0
+
+        bg-gradient-to-l
+        from-black/95
+        via-black/50
+        to-transparent
+
+        z-10
+      "
+    ></div>
+
+    <!-- Main Content -->
+    <div
+      class="
+        relative
+        z-20
+
+        h-full
+
+        flex
+        flex-col
+        justify-between
+
+        p-5
+        md:p-8
+        lg:p-12
+      "
+    >
+
+      <!-- TOP CONTENT -->
+      <div
+        class="
+          flex
+          justify-end
+        "
+      >
+
+        <!-- Text Content -->
+        <div
+          class="
+            max-w-[620px]
+
+            text-right
+
+            mt-10
+            md:mt-16
+          "
+        >
+
+          <!-- Small Title -->
+          <p
+            class="
+              text-[#B89B72]
+
+              text-sm
+              md:text-base
+
+              mb-4
+            "
+          >
+            مرافق وخدمات متكاملة
+          </p>
+
+          <!-- Main Title -->
+          <h2
+            class="
+              text-5xl
+              md:text-6xl
+              lg:text-7xl
+
+              font-bold
+
+              text-white
+
+              leading-tight
+            "
+          >
+            أسلوب حياة متكامل
+          </h2>
+
+          <!-- Dynamic Subtitle -->
+          <h3
+            class="
+              mt-8
+
+              text-2xl
+              md:text-4xl
+
+              font-bold
+
+              text-white
+            "
+          >
+            {{ amenities[activeAmenity].subtitle }}
+          </h3>
+
+          <!-- Description -->
+          <p
+            class="
+              mt-6
+
+              text-sm
+              md:text-lg
+
+              leading-7
+              md:leading-9
+
+              text-gray-300
+            "
+          >
+            {{ amenities[activeAmenity].description }}
+          </p>
+
+        </div>
+
+      </div>
+
+      <!-- Bottom Navigation -->
+      <div
+        class="
+          relative
+
+          z-30
+
+          border-t
+          border-white/10
+
+          pt-6
+          md:pt-8
+        "
+      >
+
+        <!-- Navigation Grid -->
+        <div
+          class="
+            grid
+            grid-cols-2
+            md:grid-cols-4
+
+            gap-5
+            md:gap-8
+          "
+        >
+
+          <!-- Item -->
+          <div
+            *ngFor="
+              let item of amenities;
+              let i = index
+            "
+
+            class="
+              group
+
+              cursor-pointer
+
+              transition-all
+              duration-500
+            "
+
+            (mouseenter)="changeAmenity(i)"
+            (click)="changeAmenity(i)"
+          >
+
+            <!-- Top Line -->
+            <div
+              class="
+                h-[3px]
+
+                rounded-full
+
+                mb-5
+
+                transition-all
+                duration-500
+              "
+
+              [ngClass]="{
+
+                'bg-[#7B001C] w-full':
+                  activeAmenity === i,
+
+                'bg-white/20 w-[35%] group-hover:w-full':
+                  activeAmenity !== i
+
+              }"
+            ></div>
+
+            <!-- Content -->
+            <div
+              class="
+                flex
+                flex-col
+
+                items-start
+
+                gap-4
+              "
+            >
+
+              <!-- Icon -->
+              <div
+                class="
+                  w-14
+                  h-14
+
+                  rounded-2xl
+
+                  backdrop-blur-xl
+
+                  border
+
+                  flex
+                  items-center
+                  justify-center
+
+                  transition-all
+                  duration-500
+                "
+
+                [ngClass]="{
+
+                  'bg-[#7B001C] border-[#7B001C] text-white scale-110':
+                    activeAmenity === i,
+
+                  'bg-white/5 border-white/10 text-gray-300 group-hover:bg-white/10':
+                    activeAmenity !== i
+
+                }"
+              >
+
+                <lucide-angular
+
+                  [img]="item.icon"
+
+                  class="
+                    w-6
+                    h-6
+                  "
+                >
+                </lucide-angular>
+
+              </div>
+
+              <!-- Title -->
+              <div>
+
+                <h3
+                  class="
+                    text-sm
+                    md:text-lg
+
+                    font-semibold
+
+                    transition-all
+                    duration-300
+                  "
+
+                  [ngClass]="{
+
+                    'text-white':
+                      activeAmenity === i,
+
+                    'text-gray-400 group-hover:text-white':
+                      activeAmenity !== i
+
+                  }"
+                >
+                  {{ item.title }}
+                </h3>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>

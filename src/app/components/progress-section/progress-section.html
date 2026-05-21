@@ -1,0 +1,371 @@
+<section
+  class="
+    h-screen
+
+    snap-start
+
+    px-2
+    md:px-3
+
+    py-2
+    md:py-3
+  "
+  id="progress"
+>
+
+  <!-- Main Container -->
+  <div
+    class="
+      relative
+
+      h-full
+
+      rounded-[35px]
+
+      overflow-hidden
+
+      bg-black
+    "
+  >
+
+<!-- Swiper -->
+<swiper-container
+
+  #swiperRef
+
+  init="false"
+
+  class="
+    absolute
+    inset-0
+
+    w-full
+    h-full
+
+    z-0
+  "
+>
+
+  <swiper-slide
+    *ngFor="let stage of stages"
+  >
+
+    <img
+      [src]="stage.image"
+
+      class="
+        w-full
+        h-full
+
+        object-cover
+      "
+    />
+
+  </swiper-slide>
+
+</swiper-container>
+
+    <!-- Gradient Overlay -->
+    <div
+      class="
+        absolute
+        inset-0
+
+        bg-gradient-to-l
+        from-black/90
+        via-black/40
+        to-transparent
+
+        z-20
+      "
+    ></div>
+
+    <!-- Main Content -->
+    <div
+      class="
+        relative
+        z-30
+
+        h-full
+
+        flex
+        items-center
+        justify-end
+
+        p-4
+        md:p-8
+        lg:p-12
+      "
+    >
+
+      <!-- Content Wrapper -->
+      <div
+        class="
+          max-w-[500px]
+
+          text-right
+        "
+      >
+
+        <!-- Small Title -->
+        <p
+          class="
+            text-[#B89B72]
+
+            text-sm
+            md:text-base
+
+            mb-3
+          "
+        >
+          تحديثات المشروع
+        </p>
+
+        <!-- Main Title -->
+        <h2
+          class="
+            text-5xl
+            md:text-6xl
+            lg:text-7xl
+
+            font-bold
+
+            text-white
+
+            leading-tight
+          "
+        >
+          تقدم الأعمال
+        </h2>
+
+        <!-- Dynamic Stage Title -->
+        <h3
+          class="
+            mt-8
+
+            text-2xl
+            md:text-4xl
+
+            font-bold
+
+            text-white
+          "
+        >
+          {{ stages[activeStage].title }}
+        </h3>
+
+        <!-- Description -->
+        <p
+          class="
+            mt-5
+
+            text-sm
+            md:text-lg
+
+            leading-7
+            md:leading-9
+
+            text-gray-300
+          "
+        >
+          {{ stages[activeStage].description }}
+        </p>
+
+        <!-- Huge Percentage -->
+        <div
+          class="
+            mt-10
+          "
+        >
+
+          <h2
+            class="
+              text-7xl
+              md:text-8xl
+              lg:text-[120px]
+
+              leading-none
+
+              font-bold
+
+              text-white
+            "
+          >
+            {{ stages[activeStage].progress }}
+          </h2>
+
+          <p
+            class="
+              mt-2
+
+              text-gray-400
+
+              text-sm
+              md:text-base
+            "
+          >
+            نسبة الإنجاز الحالية
+          </p>
+
+        </div>
+
+        <!-- Progress Line -->
+        <div
+          class="
+            mt-8
+
+            h-[4px]
+
+            bg-white/10
+
+            rounded-full
+
+            overflow-hidden
+          "
+        >
+
+          <div
+            class="
+              h-full
+
+              bg-[#7B001C]
+
+              transition-all
+              duration-700
+            "
+
+            [style.width]="stages[activeStage].progress"
+          ></div>
+
+        </div>
+
+        <!-- Stage Selectors -->
+        <div
+          class="
+            mt-10
+
+            flex
+            flex-wrap
+
+            gap-4
+
+            justify-end
+          "
+        >
+
+          <!-- Stage -->
+          <div
+            *ngFor="let stage of stages; let i = index"
+
+            class="
+              group
+
+              cursor-pointer
+
+              transition-all
+              duration-300
+            "
+
+            (mouseenter)="changeStage(i)"
+            (click)="changeStage(i)"
+          >
+
+            <div
+              class="
+                px-5
+                py-3
+
+                rounded-full
+
+                border
+
+                backdrop-blur-xl
+
+                transition-all
+                duration-300
+              "
+
+              [ngClass]="{
+                'bg-[#7B001C] border-[#7B001C] text-white':
+                  activeStage === i,
+
+                'bg-white/5 border-white/10 text-gray-300 hover:bg-white/10':
+                  activeStage !== i
+              }"
+            >
+
+              <span
+                class="
+                  text-sm
+                  md:text-base
+
+                  font-medium
+                "
+              >
+                {{ stage.title }}
+              </span>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Floating Year Badge -->
+    <div
+      class="
+        absolute
+
+        top-8
+        left-8
+
+        z-30
+
+        bg-black/40
+
+        backdrop-blur-xl
+
+        border
+        border-white/10
+
+        rounded-3xl
+
+        px-6
+        py-5
+      "
+    >
+
+      <p
+        class="
+          text-gray-300
+
+          text-sm
+        "
+      >
+        مرحلة التنفيذ
+      </p>
+
+      <h3
+        class="
+          mt-2
+
+          text-3xl
+          md:text-4xl
+
+          font-bold
+
+          text-white
+        "
+      >
+        {{ stages[activeStage].year }}
+      </h3>
+
+    </div>
+
+  </div>
+
+</section>

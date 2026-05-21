@@ -1,0 +1,133 @@
+<section
+  class="
+    snap-start
+    relative
+
+    min-h-screen
+
+    overflow-hidden
+
+    rounded-[20px]
+    md:rounded-[30px]
+
+    mx-2
+    md:mx-4
+
+    mt-2
+    md:mt-4
+
+    hover:mx-0
+    hover:mt-0
+    hover:rounded-none
+
+    transition-all
+    duration-700
+  "
+  id="hero"
+>
+
+  <!-- Background -->
+  <img
+    src="images/hero.png"
+    class="
+      absolute
+      inset-0
+
+      w-full
+      h-full
+
+      object-cover
+    "
+  />
+
+  <!-- Overlay -->
+  <div
+    class="
+      absolute
+      inset-0
+
+      bg-black/40
+    "
+  ></div>
+
+  <!-- Content -->
+  <div
+    class="
+      relative
+      z-10
+
+      flex
+      items-center
+      justify-end
+
+      min-h-screen
+
+      px-4
+      md:px-10
+      lg:px-20
+    "
+  >
+
+    <div
+      class="
+        max-w-full
+        md:max-w-2xl
+
+        text-right
+        text-white
+      "
+    >
+
+      <!-- Title -->
+      <h1
+        class="
+          text-3xl
+          sm:text-4xl
+          md:text-5xl
+          lg:text-7xl
+
+          font-bold
+
+          leading-snug
+          md:leading-tight
+        "
+      >
+        مجتمع سكني فاخر
+      </h1>
+
+      <!-- Description -->
+      <p
+        class="
+          mt-4
+          md:mt-6
+
+          text-sm
+          sm:text-base
+          md:text-lg
+          lg:text-xl
+
+          text-gray-200
+
+          leading-7
+          md:leading-8
+          lg:leading-10
+
+          max-w-xl
+        "
+      >
+        تجربة سكنية متكاملة بأحدث التصاميم العالمية
+        مع مساحات خضراء وخدمات متكاملة
+        تمنحك أسلوب حياة فاخر.
+      </p>
+
+      <!-- Stats -->
+      <app-hero-stats />
+
+      <!-- Buttons -->
+      <app-hero-buttons />
+
+    </div>
+
+  </div>
+
+</section>

@@ -1,0 +1,386 @@
+<section
+  class="
+    h-screen
+
+    snap-start
+
+    px-2
+    md:px-3
+
+    py-2
+    md:py-3
+  "
+  id="pricing"
+>
+
+  <!-- MAIN CONTAINER -->
+  <div
+    class="
+      relative
+
+      h-full
+
+      overflow-hidden
+
+      rounded-[35px]
+
+      border
+      border-white/5
+
+      bg-black
+    "
+  >
+
+    <!-- DYNAMIC BACKGROUND -->
+    <div
+      class="
+        absolute
+        inset-0
+
+        transition-all
+        duration-700
+      "
+    >
+
+      <!-- IMAGE -->
+      <img
+
+        [src]="
+          pricingCards[
+            activePricing
+          ].image
+        "
+
+        class="
+          absolute
+          inset-0
+
+          w-full
+          h-full
+
+          object-cover
+
+          scale-105
+        "
+      />
+
+      <!-- DARK OVERLAY -->
+      <div
+        class="
+          absolute
+          inset-0
+
+          bg-black/60
+        "
+      ></div>
+
+      <!-- GRADIENT -->
+      <div
+        class="
+          absolute
+          inset-0
+
+          bg-gradient-to-l
+          from-black
+          via-black/70
+          to-black/10
+        "
+      ></div>
+
+    </div>
+
+    <!-- CONTENT -->
+    <div
+      class="
+        relative
+        z-20
+
+        h-full
+
+        grid
+        grid-cols-1
+        lg:grid-cols-2
+
+        gap-10
+
+        p-6
+        md:p-10
+        lg:p-14
+      "
+    >
+
+      <!-- LEFT SIDE -->
+      <div
+        class="
+          flex
+          flex-col
+          justify-center
+
+          text-right
+        "
+      >
+
+        <!-- SMALL LABEL -->
+        <p
+          class="
+            text-[#B89B72]
+
+            text-sm
+            md:text-base
+
+            mb-4
+          "
+        >
+          خيارات الاستثمار
+        </p>
+
+        <!-- TITLE -->
+        <h2
+          class="
+            text-4xl
+            md:text-6xl
+            lg:text-7xl
+
+            font-bold
+
+            leading-[1.1]
+
+            text-white
+          "
+        >
+          استثمار
+          <br />
+          يبدأ من هنا
+        </h2>
+
+        <!-- DESCRIPTION -->
+        <p
+          class="
+            mt-8
+
+            max-w-[520px]
+
+            text-sm
+            md:text-base
+
+            leading-8
+            md:leading-9
+
+            text-white/80
+          "
+        >
+          مجموعة متنوعة من الوحدات السكنية
+          المصممة لتناسب أسلوب الحياة العصري،
+          مع حلول مرنة للحجز والسداد داخل
+          مجتمع سكني متكامل يوفر أعلى درجات
+          الخصوصية والرفاهية.
+        </p>
+
+      </div>
+
+      <!-- RIGHT SIDE -->
+      <div
+        class="
+          flex
+          flex-col
+          justify-center
+
+          gap-4
+        "
+      >
+
+        <!-- CARD -->
+        <div
+          *ngFor="
+            let card of pricingCards;
+            let i = index
+          "
+
+          class="
+            group
+
+            relative
+
+            overflow-hidden
+
+            rounded-[32px]
+
+            border
+
+            cursor-pointer
+
+            transition-all
+            duration-500
+          "
+
+          [ngClass]="{
+
+            'bg-white/[0.08] border-[#B89B72]/30 scale-[1.02]':
+              activePricing === i,
+
+            'bg-white/[0.03] border-white/10 hover:bg-white/[0.05]':
+              activePricing !== i
+
+          }"
+
+          (mouseenter)="changePricing(i)"
+          (click)="changePricing(i)"
+        >
+
+          <!-- CARD IMAGE -->
+          <img
+
+            [src]="card.image"
+
+            class="
+              absolute
+              inset-0
+
+              w-full
+              h-full
+
+              object-cover
+
+              opacity-0
+
+              transition-all
+              duration-700
+
+              group-hover:opacity-20
+            "
+          />
+
+          <!-- OVERLAY -->
+          <div
+            class="
+              absolute
+              inset-0
+
+              bg-gradient-to-r
+              from-black/80
+              to-transparent
+            "
+          ></div>
+
+          <!-- CONTENT -->
+          <div
+            class="
+              relative
+              z-10
+
+              flex
+              items-center
+              justify-between
+
+              gap-6
+
+              p-5
+              md:p-7
+            "
+          >
+
+            <!-- NUMBER -->
+            <div
+              class="
+                text-[#B89B72]
+
+                text-sm
+                md:text-base
+
+                font-medium
+              "
+            >
+              0{{ i + 1 }}
+            </div>
+
+            <!-- TEXT -->
+            <div
+              class="
+                flex-1
+
+                text-right
+              "
+            >
+
+              <!-- TITLE -->
+              <h3
+                class="
+                  text-xl
+                  md:text-2xl
+
+                  font-bold
+
+                  text-white
+                "
+              >
+                {{ card.title }}
+              </h3>
+
+              <!-- SUBTITLE -->
+              <p
+                class="
+                  mt-2
+
+                  text-sm
+                  md:text-base
+
+                  leading-7
+
+                  text-white/70
+                "
+              >
+                {{ card.subtitle }}
+              </p>
+
+              <!-- BOTTOM -->
+              <div
+                class="
+                  mt-5
+
+                  flex
+                  items-center
+                  justify-between
+                "
+              >
+
+                <!-- PAYMENT -->
+                <p
+                  class="
+                    text-sm
+                    md:text-base
+
+                    text-[#B89B72]
+                  "
+                >
+                  {{ card.payment }}
+                </p>
+
+                <!-- PRICE -->
+                <p
+                  class="
+                    text-base
+                    md:text-lg
+
+                    font-semibold
+
+                    text-white
+                  "
+                >
+                  {{ card.price }}
+                </p>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>

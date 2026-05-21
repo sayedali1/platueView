@@ -1,3 +1,42 @@
-/* You can add global styles to this file, and also import other style files */
-
+/* Tailwind */
 @import 'tailwindcss';
+@import 'swiper/css';
+@import 'swiper/css/effect-fade';
+/* Base */
+html,
+body {
+  margin: 0;
+  padding: 0;
+
+  height: 100%;
+}
+
+/* Hide body scroll */
+body {
+  overflow: hidden;
+  background: #0a0a0a;
+}
+
+/* Snap Container */
+.snap-container {
+  height: 100vh;
+
+  overflow-y: scroll;
+
+  scroll-snap-type: y mandatory;
+
+  scroll-behavior: smooth;
+
+  /* Firefox */
+  scrollbar-width: none;
+}
+
+/* Chrome, Edge, Safari */
+.snap-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* Sections */
+.snap-container section {
+  scroll-snap-align: start;
+}

@@ -1,0 +1,566 @@
+<section
+  class="
+    h-screen
+
+    snap-start
+
+    px-2
+    md:px-3
+
+    py-2
+    md:py-3
+  "
+  id="gallery"
+>
+
+  <!-- Main Container -->
+  <div
+    class="
+      relative
+
+      h-full
+
+      rounded-[35px]
+
+      overflow-hidden
+
+      border
+      border-white/5
+
+      bg-gradient-to-br
+      from-[#111111]
+      to-black
+
+      p-5
+      md:p-8
+      lg:p-10
+    "
+  >
+
+    <!-- Ambient Glow -->
+    <div
+      class="
+        absolute
+
+        top-[-200px]
+        left-[-150px]
+
+        w-[600px]
+        h-[600px]
+
+        rounded-full
+
+        bg-[#7B001C]/20
+
+        blur-[160px]
+
+        pointer-events-none
+      "
+    ></div>
+
+    <!-- Ambient Glow -->
+    <div
+      class="
+        absolute
+
+        bottom-[-250px]
+        right-[-200px]
+
+        w-[700px]
+        h-[700px]
+
+        rounded-full
+
+        bg-[#B89B72]/10
+
+        blur-[180px]
+
+        pointer-events-none
+      "
+    ></div>
+
+    <!-- Noise Texture -->
+    <div
+      class="
+        absolute
+        inset-0
+
+        opacity-[0.03]
+
+        mix-blend-overlay
+
+        pointer-events-none
+      "
+
+      style="
+        background-image:
+        url('images/noise.png');
+      "
+    ></div>
+
+    <!-- Header -->
+    <div
+      class="
+        relative
+        z-10
+
+        flex
+        flex-col
+
+        items-end
+
+        text-right
+      "
+    >
+
+      <p
+        class="
+          text-[#B89B72]
+
+          text-sm
+          md:text-base
+
+          mb-3
+        "
+      >
+        معرض المشروع
+      </p>
+
+      <h2
+        class="
+          text-4xl
+          md:text-6xl
+          lg:text-7xl
+
+          font-bold
+
+          text-white
+
+          leading-tight
+        "
+      >
+        تفاصيل تنبض بالفخامة
+      </h2>
+
+    </div>
+
+    <!-- Gallery Grid -->
+    <div
+      class="
+        relative
+        z-10
+
+        mt-6
+        md:mt-8
+
+        grid
+        grid-cols-1
+        md:grid-cols-2
+
+        gap-4
+        md:gap-6
+
+        h-[calc(100%-140px)]
+      "
+    >
+
+      <!-- Gallery Card -->
+      <div
+        *ngFor="
+          let gallery of galleries
+        "
+
+        class="
+          relative
+
+          overflow-hidden
+
+          rounded-[28px]
+
+          group
+
+          cursor-pointer
+
+          border
+          border-white/5
+
+          bg-black/20
+
+          backdrop-blur-sm
+        "
+
+        (click)="openGallery(gallery)"
+      >
+
+        <!-- Image -->
+        <img
+          [src]="gallery.cover"
+
+          class="
+            absolute
+            inset-0
+
+            w-full
+            h-full
+
+            object-cover
+
+            transition-all
+            duration-700
+
+            group-hover:scale-105
+          "
+        />
+
+        <!-- Dark Overlay -->
+        <div
+          class="
+            absolute
+            inset-0
+
+            bg-black/30
+
+            transition-all
+            duration-500
+
+            group-hover:bg-black/20
+          "
+        ></div>
+
+        <!-- Gradient Overlay -->
+        <div
+          class="
+            absolute
+            inset-0
+
+            bg-gradient-to-t
+            from-black/90
+            via-black/20
+            to-transparent
+          "
+        ></div>
+
+        <!-- Glow -->
+        <div
+          class="
+            absolute
+
+            bottom-[-100px]
+            right-[-100px]
+
+            w-[250px]
+            h-[250px]
+
+            rounded-full
+
+            bg-[#B89B72]/10
+
+            blur-[100px]
+
+            opacity-0
+
+            transition-all
+            duration-700
+
+            group-hover:opacity-100
+          "
+        ></div>
+
+        <!-- Text -->
+        <div
+          class="
+            absolute
+
+            bottom-6
+            right-6
+
+            z-10
+          "
+        >
+
+          <h3
+            class="
+              text-2xl
+              md:text-3xl
+
+              font-bold
+
+              text-white
+            "
+          >
+            {{ gallery.title }}
+          </h3>
+
+          <p
+            class="
+              mt-2
+
+              text-sm
+
+              text-gray-300
+            "
+          >
+            اضغط لاستكشاف الصور
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- FULLSCREEN MODAL -->
+  <div
+    *ngIf="isModalOpen"
+
+    class="
+      fixed
+      inset-0
+
+      z-[999]
+
+      bg-black
+
+      flex
+      items-center
+      justify-center
+    "
+  >
+
+    <!-- Background Blur -->
+    <div
+      class="
+        absolute
+        inset-0
+
+        bg-black/90
+
+        backdrop-blur-2xl
+      "
+    ></div>
+
+    <!-- Ambient Glow -->
+    <div
+      class="
+        absolute
+
+        top-[10%]
+        right-[10%]
+
+        w-[500px]
+        h-[500px]
+
+        rounded-full
+
+        bg-[#7B001C]/20
+
+        blur-[150px]
+      "
+    ></div>
+
+    <!-- Close Button -->
+    <button
+      class="
+        absolute
+
+        top-6
+        right-6
+
+        z-50
+
+        w-14
+        h-14
+
+        rounded-full
+
+        bg-white/10
+
+        backdrop-blur-xl
+
+        border
+        border-white/10
+
+        text-white
+
+        text-2xl
+
+        transition-all
+        duration-300
+
+        hover:bg-white/20
+      "
+
+      (click)="closeGallery()"
+    >
+      ✕
+    </button>
+
+    <!-- Left Arrow -->
+    <button
+      class="
+        absolute
+
+        left-6
+
+        z-50
+
+        w-14
+        h-14
+
+        rounded-full
+
+        bg-white/10
+
+        backdrop-blur-xl
+
+        border
+        border-white/10
+
+        text-white
+
+        text-2xl
+
+        transition-all
+        duration-300
+
+        hover:bg-white/20
+      "
+
+      (click)="prevImage()"
+    >
+      ←
+    </button>
+
+    <!-- Right Arrow -->
+    <button
+      class="
+        absolute
+
+        right-6
+
+        z-50
+
+        w-14
+        h-14
+
+        rounded-full
+
+        bg-white/10
+
+        backdrop-blur-xl
+
+        border
+        border-white/10
+
+        text-white
+
+        text-2xl
+
+        transition-all
+        duration-300
+
+        hover:bg-white/20
+      "
+
+      (click)="nextImage()"
+    >
+      →
+    </button>
+
+    <!-- Main Image -->
+    <div
+      class="
+        relative
+
+        w-full
+        h-full
+
+        overflow-hidden
+      "
+    >
+
+      <img
+        *ngIf="selectedGallery"
+
+        [src]="
+          selectedGallery
+          .images[
+            currentImageIndex
+          ]
+        "
+
+        class="
+          w-full
+          h-full
+
+          object-cover
+
+          animate-fadeImage
+        "
+      />
+
+      <!-- Overlay -->
+      <div
+        class="
+          absolute
+          inset-0
+
+          bg-gradient-to-t
+          from-black/80
+          via-transparent
+          to-black/20
+        "
+      ></div>
+
+      <!-- Bottom Info -->
+      <div
+        class="
+          absolute
+
+          bottom-10
+          right-10
+
+          z-20
+
+          text-right
+        "
+      >
+
+        <h2
+          class="
+            text-4xl
+            md:text-6xl
+
+            font-bold
+
+            text-white
+          "
+        >
+          {{ selectedGallery?.title }}
+        </h2>
+
+        <p
+          class="
+            mt-3
+
+            text-gray-300
+          "
+        >
+          {{
+            currentImageIndex + 1
+          }}
+          /
+          {{
+            selectedGallery?.images?.length
+          }}
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
