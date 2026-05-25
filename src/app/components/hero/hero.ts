@@ -1,7 +1,10 @@
 import {
   Component,
   OnInit,
-  OnDestroy
+  OnDestroy,
+  AfterViewInit,
+  ViewChild,
+  ElementRef
 } from '@angular/core';
 
 import { CommonModule } from '@angular/common';
@@ -27,8 +30,16 @@ import {
 })
 
 export class Hero
-implements OnInit, OnDestroy {
+implements
+  OnInit,
+  OnDestroy,
+  AfterViewInit {
 
+  // VIDEO REF
+  @ViewChild('heroVideo')
+  heroVideo!: ElementRef<HTMLVideoElement>;
+
+  // WHATSAPP ICON
   readonly MessageCircle =
     MessageCircle;
 
@@ -37,7 +48,7 @@ implements OnInit, OnDestroy {
 
     'الوحدة بسعر التكلفة',
 
-    'نسبه فى الارض',
+    'تقسيط حتى 7 سنوات',
 
     'أنظمة سداد مرنة',
 
@@ -51,6 +62,10 @@ implements OnInit, OnDestroy {
   // INTERVAL
   intervalId: any;
 
+  // =================================
+  // INIT
+  // =================================
+
   ngOnInit() {
 
     let current = 0;
@@ -60,7 +75,7 @@ implements OnInit, OnDestroy {
       this.messages[current]
     );
 
-    // START STAGGER
+    // STAGGER REVEAL
     this.intervalId =
       setInterval(() => {
 
@@ -85,9 +100,59 @@ implements OnInit, OnDestroy {
 
         }
 
-      }, 1900);
+      }, 1800);
 
   }
+
+  // =================================
+  // FORCE VIDEO PLAY
+  // =================================
+
+  ngAfterViewInit() {
+
+    const video =
+      this.heroVideo.nativeElement;
+
+    // IMPORTANT
+    video.muted = true;
+
+    video.autoplay = true;
+
+    video.loop = true;
+
+    video.playsInline = true;
+
+    // FORCE PLAY
+    const playPromise =
+      video.play();
+
+    // HANDLE AUTOPLAY BLOCK
+    if (playPromise !== undefined) {
+
+      playPromise
+        .then(() => {
+
+          console.log(
+            'Hero video playing'
+          );
+
+        })
+
+        .catch(() => {
+
+          console.log(
+            'Autoplay blocked'
+          );
+
+        });
+
+    }
+
+  }
+
+  // =================================
+  // DESTROY
+  // =================================
 
   ngOnDestroy() {
 
