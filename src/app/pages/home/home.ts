@@ -10,7 +10,7 @@ import { PricingSection } from "../../components/pricing-section/pricing-section
 
 @Component({
   selector: 'app-home',
-  imports: [Navbar, Hero, MasterplanSection, ProgressSection, AmenitiesSection, GallerySection, LocationSection, PricingSection],
+  imports: [Navbar, Hero, MasterplanSection, ProgressSection, AmenitiesSection, GallerySection, LocationSection],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })

@@ -1,0 +1,143 @@
+@keyframes slowZoom {
+
+  0% {
+
+    transform: scale(1);
+
+  }
+
+  100% {
+
+    transform: scale(1.08);
+
+  }
+
+}
+
+@keyframes captionReveal {
+
+  0% {
+
+    opacity: 0;
+
+    transform:
+      translateY(40px)
+      translateX(-20px);
+
+    filter: blur(10px);
+
+  }
+
+  100% {
+
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      translateX(0);
+
+    filter: blur(0);
+
+  }
+
+}
+
+/* CAPTION ANIMATION */
+.animate-captionReveal {
+
+  animation:
+    captionReveal 0.7s
+    cubic-bezier(0.22, 1, 0.36, 1)
+    forwards;
+
+}
+
+/* SMOOTH VIDEO */
+video {
+
+  will-change:
+    transform;
+
+}
+
+/* BETTER TEXT RENDERING */
+h1,
+h2,
+h3,
+p,
+span {
+
+  -webkit-font-smoothing:
+    antialiased;
+
+  text-rendering:
+    optimizeLegibility;
+
+}
+
+/* HIDE SCROLLBAR */
+.scrollbar-hide::-webkit-scrollbar {
+
+  display: none;
+
+}
+
+.scrollbar-hide {
+
+  -ms-overflow-style:
+    none;
+
+  scrollbar-width:
+    none;
+
+}
+
+/* MOBILE HERO IMPROVEMENTS */
+@media (max-width: 768px) {
+
+  #hero {
+
+    height: 100svh;
+
+  }
+
+}
+
+/* SOFT RED GLOW */
+.hero-red-glow {
+
+  box-shadow:
+    0 0 80px rgba(123, 0, 28, 0.35);
+
+}
+
+/* GLASS EFFECT */
+.hero-glass {
+
+  background:
+    rgba(255, 255, 255, 0.06);
+
+  backdrop-filter:
+    blur(18px);
+
+  -webkit-backdrop-filter:
+    blur(18px);
+
+}
+
+/* BUTTON SMOOTHNESS */
+.hero-button {
+
+  transition:
+    transform 0.5s ease,
+    background 0.5s ease,
+    border-color 0.5s ease;
+
+}
+
+.hero-button:hover {
+
+  transform:
+    translateY(-2px);
+
+}

@@ -11,7 +11,6 @@ import {
 
   imports: [
     CommonModule,
-    NgClass
   ],
 
   templateUrl: './gallery-section.html',

@@ -11,10 +11,12 @@ import {
 import { LucideAngularModule } from 'lucide-angular';
 
 import {
-  ShieldCheck,
+ ShieldCheck,
   CarFront,
   Building2,
-  Trees
+  Trees,
+  HouseWifi,
+  Leaf
 } from 'lucide-angular';
 
 @Component({
@@ -121,7 +123,40 @@ implements OnInit, OnDestroy {
         'images/facade2.jpeg',
         'images/facade3.jpeg'
       ]
-    }
+    },
+    {
+  title: 'المنازل الذكية',
+
+  subtitle: 'تحكم ذكي في جميع تفاصيل المنزل',
+
+  description:
+    'أنظمة Smart Home متطورة للتحكم في الإضاءة والتكييف والأمان عبر الهاتف الذكي.',
+
+  icon: HouseWifi,
+
+  images: [
+    'images/smarthouse5.png',
+    'images/smarthouse6.png',
+    'images/smarthouse7.png'
+  ]
+},
+
+{
+  title: 'المساحات الخضراء',
+
+  subtitle: 'طبيعة تمنحك الراحة والهدوء',
+
+  description:
+    'مساحات خضراء واسعة وممرات مفتوحة تمنح السكان تجربة معيشية أكثر راحة وهدوء.',
+
+  icon: Leaf,
+
+  images: [
+    'images/green1.jpeg',
+    'images/green2.jpeg',
+    'images/green3.jpeg'
+  ]
+}
 
   ];
 

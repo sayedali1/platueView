@@ -6,16 +6,19 @@
 
     snap-start
 
-    px-2
+    px-1
+    sm:px-2
     md:px-3
 
-    py-2
+    py-1
+    sm:py-2
     md:py-3
   "
+
   id="amenities"
 >
 
-  <!-- Main Container -->
+  <!-- MAIN CONTAINER -->
   <div
     class="
       relative
@@ -30,7 +33,7 @@
     "
   >
 
-    <!-- Dynamic Background -->
+    <!-- DYNAMIC BACKGROUND -->
     <div
       class="
         absolute
@@ -44,9 +47,17 @@
 
       <img
         *ngIf="imageUpdateCounter"
+
         [src]="getCurrentImage()"
-        [style.opacity]="isTransitioning ? 0 : 1"
-        [style.transition]="'opacity 0.5s ease-in-out'"
+
+        [style.opacity]="
+          isTransitioning ? 0 : 1
+        "
+
+        [style.transition]="
+          'opacity 0.5s ease-in-out'
+        "
+
         class="
           w-full
           h-full
@@ -58,26 +69,26 @@
 
     </div>
 
-    <!-- Dark Overlay -->
+    <!-- DARK OVERLAY -->
     <div
       class="
         absolute
         inset-0
 
-        bg-black/55
+        bg-black/10
 
         z-10
       "
     ></div>
 
-    <!-- Gradient Overlay -->
+    <!-- GRADIENT -->
     <div
       class="
         absolute
         inset-0
 
         bg-gradient-to-l
-        from-black/95
+        from-black/40
         via-black/50
         to-transparent
 
@@ -85,7 +96,7 @@
       "
     ></div>
 
-    <!-- Main Content -->
+    <!-- CONTENT -->
     <div
       class="
         relative
@@ -103,7 +114,7 @@
       "
     >
 
-      <!-- TOP CONTENT -->
+      <!-- TOP -->
       <div
         class="
           flex
@@ -111,10 +122,12 @@
         "
       >
 
-        <!-- Text Content -->
+        <!-- TEXT -->
         <div
           class="
-            max-w-[620px]
+            max-w-[320px]
+            sm:max-w-[420px]
+            md:max-w-[620px]
 
             text-right
 
@@ -123,12 +136,12 @@
           "
         >
 
-          <!-- Small Title -->
+          <!-- SMALL TITLE -->
           <p
             class="
               text-[#B89B72]
 
-              text-sm
+              text-xs
               md:text-base
 
               mb-4
@@ -137,10 +150,11 @@
             مرافق وخدمات متكاملة
           </p>
 
-          <!-- Main Title -->
+          <!-- MAIN TITLE -->
           <h2
             class="
-              text-5xl
+              text-3xl
+              sm:text-4xl
               md:text-6xl
               lg:text-7xl
 
@@ -154,12 +168,14 @@
             أسلوب حياة متكامل
           </h2>
 
-          <!-- Dynamic Subtitle -->
+          <!-- DYNAMIC SUBTITLE -->
           <h3
             class="
-              mt-8
+              mt-6
+              md:mt-8
 
-              text-2xl
+              text-lg
+              sm:text-2xl
               md:text-4xl
 
               font-bold
@@ -170,10 +186,11 @@
             {{ amenities[activeAmenity].subtitle }}
           </h3>
 
-          <!-- Description -->
+          <!-- DESCRIPTION -->
           <p
             class="
-              mt-6
+              mt-4
+              md:mt-6
 
               text-sm
               md:text-lg
@@ -191,7 +208,7 @@
 
       </div>
 
-      <!-- Bottom Navigation -->
+      <!-- BOTTOM -->
       <div
         class="
           relative
@@ -201,152 +218,182 @@
           border-t
           border-white/10
 
-          pt-6
+          pt-5
           md:pt-8
         "
       >
 
-        <!-- Navigation Grid -->
+        <!-- NAVIGATION -->
         <div
           class="
-            grid
-            grid-cols-2
-            md:grid-cols-4
+            overflow-x-auto
+            md:overflow-visible
 
-            gap-5
-            md:gap-8
+            scrollbar-hide
           "
         >
 
-          <!-- Item -->
+          <!-- MOBILE = horizontal rail -->
+          <!-- DESKTOP = grid -->
           <div
-            *ngFor="
-              let item of amenities;
-              let i = index
-            "
-
             class="
-              group
+              flex
+              md:grid
 
-              cursor-pointer
+              md:grid-cols-3
+              lg:grid-cols-6
 
-              transition-all
-              duration-500
+              gap-3
+              md:gap-6
             "
-
-            (mouseenter)="changeAmenity(i)"
-            (click)="changeAmenity(i)"
           >
 
-            <!-- Top Line -->
+            <!-- ITEM -->
             <div
+              *ngFor="
+                let item of amenities;
+                let i = index
+              "
+
               class="
-                h-[3px]
+                group
 
-                rounded-full
-
-                mb-5
+                cursor-pointer
 
                 transition-all
                 duration-500
+
+                shrink-0
+
+                w-[140px]
+                md:w-auto
               "
 
-              [ngClass]="{
-
-                'bg-[#7B001C] w-full':
-                  activeAmenity === i,
-
-                'bg-white/20 w-[35%] group-hover:w-full':
-                  activeAmenity !== i
-
-              }"
-            ></div>
-
-            <!-- Content -->
-            <div
-              class="
-                flex
-                flex-col
-
-                items-start
-
-                gap-4
-              "
+              (mouseenter)="changeAmenity(i)"
+              (click)="changeAmenity(i)"
             >
 
-              <!-- Icon -->
-              <div
-                class="
-                  w-14
-                  h-14
+              <!-- CARD -->
+              <!-- TOP LINE -->
+<div
+  class="
+    h-[3px]
 
-                  rounded-2xl
+    rounded-full
 
-                  backdrop-blur-xl
+    mb-4
+    md:mb-5
 
-                  border
+    transition-all
+    duration-500
+  "
 
-                  flex
-                  items-center
-                  justify-center
+  [ngClass]="{
 
-                  transition-all
-                  duration-500
-                "
+    'bg-[#7B001C] w-full':
+      activeAmenity === i,
 
-                [ngClass]="{
+    'bg-white/20 w-[35%] group-hover:w-full':
+      activeAmenity !== i
 
-                  'bg-[#7B001C] border-[#7B001C] text-white scale-110':
-                    activeAmenity === i,
+  }"
+></div>
 
-                  'bg-white/5 border-white/10 text-gray-300 group-hover:bg-white/10':
-                    activeAmenity !== i
+<!-- CONTENT -->
+<div
+  class="
+    flex
+    flex-col
 
-                }"
-              >
+    items-start
 
-                <lucide-angular
+    gap-3
+    md:gap-4
+  "
+>
 
-                  [img]="item.icon"
+  <!-- ICON -->
+  <div
+    class="
+      w-12
+      h-12
 
-                  class="
-                    w-6
-                    h-6
-                  "
-                >
-                </lucide-angular>
+      md:w-14
+      md:h-14
 
-              </div>
+      rounded-2xl
 
-              <!-- Title -->
-              <div>
+      backdrop-blur-xl
 
-                <h3
-                  class="
-                    text-sm
-                    md:text-lg
+      border
 
-                    font-semibold
+      flex
+      items-center
+      justify-center
 
-                    transition-all
-                    duration-300
-                  "
+      transition-all
+      duration-500
+    "
 
-                  [ngClass]="{
+    [ngClass]="{
 
-                    'text-white':
-                      activeAmenity === i,
+      'bg-[#7B001C] border-[#7B001C] text-white scale-110':
+        activeAmenity === i,
 
-                    'text-gray-400 group-hover:text-white':
-                      activeAmenity !== i
+      'bg-white/5 border-white/10 text-gray-300 group-hover:bg-white/10':
+        activeAmenity !== i
 
-                  }"
-                >
-                  {{ item.title }}
-                </h3>
+    }"
+  >
 
-              </div>
+    <lucide-angular
 
+      [img]="item.icon"
+
+      class="
+        w-5
+        h-5
+
+        md:w-6
+        md:h-6
+      "
+    >
+    </lucide-angular>
+
+  </div>
+
+  <!-- TITLE -->
+  <div>
+
+    <h3
+      class="
+        text-sm
+        md:text-base
+
+        font-semibold
+
+        leading-6
+
+        transition-all
+        duration-300
+      "
+
+      [ngClass]="{
+
+        'text-white':
+          activeAmenity === i,
+
+        'text-gray-400 group-hover:text-white':
+          activeAmenity !== i
+
+      }"
+    >
+      {{ item.title }}
+    </h3>
+
+  </div>
+
+</div>
             </div>
 
           </div>

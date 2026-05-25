@@ -96,7 +96,7 @@ export class Navbar implements OnInit {
       target: 'hero'
     },
     {
-      label: 'االمخطط العام',
+      label: 'المخطط العام',
       target: 'masterplan'
     },
     {
@@ -117,12 +117,12 @@ export class Navbar implements OnInit {
     {
       label: 'الموقع',
       target: 'location'
-    },
-
-    {
-      label: 'الأسعار',
-      target: 'pricing'
     }
+
+    // {
+    //   label: 'الأسعار',
+    //   target: 'pricing'
+    // }
 
   ];
 

@@ -2,22 +2,13 @@ import { CommonModule, NgClass } from '@angular/common';
 
 import {
   Component,
-  CUSTOM_ELEMENTS_SCHEMA,
-  ElementRef,
-  ViewChild,
   AfterViewInit
 } from '@angular/core';
-
-import { register } from 'swiper/element/bundle';
-
-register();
 
 @Component({
   selector: 'app-progress-section',
 
   standalone: true,
-
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 
   imports: [
     CommonModule,
@@ -32,25 +23,36 @@ register();
 export class ProgressSection
 implements AfterViewInit {
 
-  @ViewChild('swiperRef')
-  swiperRef!: ElementRef;
-
+  // ACTIVE STAGE
   activeStage = 0;
 
+  // ACTIVE VIDEO INSIDE STAGE
+  activeVideoIndex = 0;
+
+  // CURRENT PLAYING VIDEO
+  currentVideo = '';
+
+  // STAGES
   stages = [
+
+    // STAGE 01
     {
       title: 'أعمال الحفر',
 
       description:
         'بدأت أعمال تجهيز الموقع والحفر وفق أعلى المعايير الهندسية لضمان تأسيس قوي ومستدام للمشروع.',
 
-      progress: '25%',
+      progress: '100%',
 
-      image: 'images/progress.jpeg',
+      videos: [
 
-      year: '2024'
+        'images/a3malEl7fr.mp4',
+        
+
+      ]
     },
 
+    // STAGE 02
     {
       title: 'الهيكل الإنشائي',
 
@@ -59,55 +61,87 @@ implements AfterViewInit {
 
       progress: '60%',
 
-      image: 'images/progress2.jpeg',
+      videos: [
 
-      year: '2025'
+        'images/5rsana.mp4'
+
+      ]
     },
 
+    // STAGE 03
     {
       title: 'التشطيبات النهائية',
 
       description:
         'العمل على الواجهات والتشطيبات الداخلية والمساحات الخضراء استعداداً للتسليم النهائي.',
 
-      progress: '85%',
+      progress: '20%',
 
-      image: 'images/progress3.jpeg',
+      videos: [
 
-      year: '2026'
+        'videos/finishing1.mp4',
+        'videos/finishing2.mp4',
+
+      ]
     }
+
   ];
 
+  // AFTER VIEW INIT
   ngAfterViewInit() {
 
-    const swiperEl = this.swiperRef.nativeElement;
-
-    Object.assign(swiperEl, {
-
-      effect: 'fade',
-
-      fadeEffect: {
-        crossFade: true
-      },
-
-      speed: 900,
-
-      allowTouchMove: false,
-
-    });
-
-    swiperEl.initialize();
+    this.setCurrentVideo();
 
   }
 
+  // SET CURRENT VIDEO
+  setCurrentVideo() {
+
+    this.currentVideo =
+      this.stages[this.activeStage]
+      .videos[this.activeVideoIndex];
+
+  }
+
+  // VIDEO ENDED
+  onVideoEnded() {
+
+    const currentStage =
+      this.stages[this.activeStage];
+
+    // NEXT VIDEO INSIDE SAME STAGE
+    if (
+      this.activeVideoIndex <
+      currentStage.videos.length - 1
+    ) {
+
+      this.activeVideoIndex++;
+
+    }
+
+    // NEXT STAGE
+    else {
+
+      this.activeStage =
+        (this.activeStage + 1)
+        % this.stages.length;
+
+      this.activeVideoIndex = 0;
+
+    }
+
+    this.setCurrentVideo();
+
+  }
+
+  // MANUAL CHANGE STAGE
   changeStage(index: number) {
 
     this.activeStage = index;
 
-    this.swiperRef
-      .nativeElement
-      .swiper
-      .slideTo(index);
+    this.activeVideoIndex = 0;
+
+    this.setCurrentVideo();
 
   }
 

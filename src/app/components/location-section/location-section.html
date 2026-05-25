@@ -4,12 +4,15 @@
 
     snap-start
 
-    px-2
+    px-1
+    sm:px-2
     md:px-3
 
-    py-2
+    py-1
+    sm:py-2
     md:py-3
   "
+
   id="location"
 >
 
@@ -53,6 +56,19 @@
     >
     </div>
 
+    <!-- OVERLAY -->
+    <div
+      class="
+        absolute
+        inset-0
+
+        bg-black/10
+        md:bg-black/0
+
+        z-10
+      "
+    ></div>
+
     <!-- CONTENT -->
     <div
       class="
@@ -60,283 +76,411 @@
         z-20
 
         h-full
-
-        flex
-        items-center
-        justify-end
-
-        p-4
-        md:p-8
-        lg:p-10
       "
     >
 
-      <!-- FLOATING GLASS PANEL -->
+      <!-- ========================= -->
+      <!-- DESKTOP PANEL -->
+      <!-- ========================= -->
+
       <div
         class="
-          w-full
-          max-w-[480px]
+          hidden md:flex
 
-          text-right
+          h-full
 
-          rounded-[34px]
+          items-center
+          justify-end
 
-          border
-          border-white/15
-
-          bg-black/45
-
-          backdrop-blur-2xl
-
-          shadow-[0_0_80px_rgba(0,0,0,0.45)]
-
-          p-7
-          md:p-8
+          p-8
+          lg:p-10
         "
       >
 
-        <!-- SMALL LABEL -->
-        <p
-          class="
-            text-[#B89B72]
-
-            text-xs
-            md:text-sm
-
-            mb-3
-          "
-        >
-          الموقع الاستراتيجي
-        </p>
-
-        <!-- TITLE -->
-        <h2
-          class="
-            text-4xl
-            md:text-5xl
-            lg:text-6xl
-
-            font-bold
-
-            leading-[1.15]
-
-            text-white
-          "
-        >
-          في قلب
-          <br />
-          كل ما تحتاجه
-        </h2>
-
-        <!-- DESCRIPTION -->
-        <p
-          class="
-            mt-6
-
-            text-sm
-            md:text-base
-
-            leading-8
-            md:leading-9
-
-            text-white/90
-          "
-        >
-          يتميز المشروع بموقع استراتيجي
-          يربط بين المنيا القديمة والمنيا الجديدة،
-          بالقرب من أهم المعالم والمحاور الرئيسية،
-          مع إطلالة مباشرة على كوبري النيل
-          وأبرز الوجهات الحيوية بالمدينة.
-        </p>
-
-        <!-- LOCATION CARDS -->
+        <!-- GLASS PANEL -->
         <div
           class="
-            mt-10
+            w-[480px]
 
-            flex
-            flex-col
+            text-right
 
-            gap-3
+            rounded-[34px]
+
+            border
+            border-white/10
+
+            bg-black/35
+
+            backdrop-blur-2xl
+
+            shadow-[0_0_80px_rgba(0,0,0,0.45)]
+
+            p-8
           "
         >
 
-          <!-- CARD -->
+          <!-- TOP -->
           <div
-            *ngFor="
-              let point of points;
-              let i = index
-            "
-
             class="
-              group
+              flex
+              items-end
+              justify-between
 
-              relative
-
-              overflow-hidden
-
-              rounded-[24px]
-
-              border
-
-              cursor-pointer
-
-              backdrop-blur-2xl
-
-              p-4
-              md:p-5
-
-              transition-all
-              duration-500
+              gap-4
             "
-
-            [ngClass]="{
-
-              'bg-black/50 border-[#B89B72]/30 shadow-[0_0_40px_rgba(184,155,114,0.12)]':
-                activePoint === i,
-
-              'bg-black/30 border-white/10 hover:bg-black/40 hover:border-[#B89B72]/20':
-                activePoint !== i
-
-            }"
-
-            (mouseenter)="changePoint(i)"
-            (click)="changePoint(i)"
           >
 
-            <!-- CARD GLOW -->
-            <div
-              class="
-                absolute
+            <!-- TEXT -->
+            <div>
 
-                top-[-120px]
-                right-[-120px]
-
-                w-[240px]
-                h-[240px]
-
-                rounded-full
-
-                bg-[#7B001C]/10
-
-                blur-[120px]
-
-                opacity-0
-
-                transition-all
-                duration-700
-
-                group-hover:opacity-100
-              "
-            ></div>
-
-            <!-- CONTENT -->
-            <div
-              class="
-                relative
-                z-10
-
-                flex
-                items-start
-                justify-between
-
-                gap-4
-              "
-            >
-
-              <!-- NUMBER -->
-              <div
+              <p
                 class="
                   text-[#B89B72]
 
-                  text-xs
-                  md:text-sm
+                  text-sm
 
-                  font-medium
+                  mb-2
                 "
               >
-                0{{ i + 1 }}
-              </div>
+                الموقع الاستراتيجي
+              </p>
 
-              <!-- TEXT -->
-              <div
+              <h2
                 class="
-                  text-right
+                  text-5xl
+                  lg:text-6xl
+
+                  font-bold
+
+                  leading-[1.1]
+
+                  text-white
                 "
               >
-
-                <h3
-                  class="
-                    text-lg
-                    md:text-xl
-
-                    font-bold
-
-                    text-white
-                  "
-                >
-                  {{ point.title }}
-                </h3>
-
-                <p
-                  class="
-                    mt-1
-
-                    text-sm
-
-                    leading-6
-
-                    text-white/70
-                  "
-                >
-                  {{ point.subtitle }}
-                </p>
-
-              </div>
+                في قلب
+                كل ما تحتاجه
+              </h2>
 
             </div>
+
+            <!-- NUMBER -->
+            <div
+              class="
+                text-[#B89B72]
+
+                text-6xl
+
+                font-black
+
+                leading-none
+              "
+            >
+              0{{ activePoint + 1 }}
+            </div>
+
+          </div>
+
+          <!-- DESCRIPTION -->
+          <p
+            class="
+              mt-5
+
+              text-base
+
+              leading-9
+
+              text-white/80
+            "
+          >
+            يتميز المشروع بموقع استراتيجي
+            يربط بين المنيا القديمة والمنيا الجديدة،
+            بالقرب من أهم المعالم والمحاور الرئيسية،
+            مع إطلالة مباشرة على كوبري النيل.
+          </p>
+
+          <!-- TABS -->
+          <div
+            class="
+              mt-6
+
+              flex
+              flex-wrap
+
+              gap-3
+            "
+          >
+
+            <button
+              *ngFor="
+                let point of points;
+                let i = index
+              "
+
+              (mouseenter)="changePoint(i)"
+              (click)="changePoint(i)"
+
+              class="
+                px-5
+                py-3
+
+                rounded-2xl
+
+                border
+
+                text-sm
+
+                transition-all
+                duration-500
+              "
+
+              [ngClass]="{
+
+                'bg-[#7B001C] border-[#7B001C] text-white':
+                  activePoint === i,
+
+                'bg-black/30 border-white/10 text-white/70 hover:bg-white/10':
+                  activePoint !== i
+
+              }"
+            >
+
+              {{ point.title }}
+
+            </button>
+
+          </div>
+
+          <!-- ACTIVE LOCATION -->
+          <div
+            class="
+              mt-6
+
+              rounded-2xl
+
+              border
+              border-white/10
+
+              bg-white/5
+
+              p-5
+            "
+          >
+
+            <h3
+              class="
+                text-white
+
+                text-2xl
+
+                font-bold
+              "
+            >
+              {{ points[activePoint].title }}
+            </h3>
+
+            <p
+              class="
+                mt-1
+
+                text-[#D6B48A]
+
+                text-base
+              "
+            >
+              {{ points[activePoint].subtitle }}
+            </p>
+
+            <p
+              class="
+                mt-3
+
+                text-white/70
+
+                text-sm
+
+                leading-7
+              "
+            >
+              {{ points[activePoint].description }}
+            </p>
 
           </div>
 
         </div>
 
-        <!-- BOTTOM INFO -->
+      </div>
+
+      <!-- ========================= -->
+      <!-- MOBILE DOCK -->
+      <!-- ========================= -->
+
+      <div
+        class="
+          md:hidden
+
+          h-full
+
+          flex
+          items-end
+          justify-center
+
+          p-3
+        "
+      >
+
+        <!-- MOBILE PANEL -->
         <div
           class="
-            mt-8
+            w-[92%]
 
-            flex
-            items-center
-            justify-end
+            rounded-[26px]
 
-            gap-3
+            border
+            border-white/10
+
+            bg-black/35
+
+            backdrop-blur-2xl
+
+            shadow-[0_0_80px_rgba(0,0,0,0.45)]
+
+            p-4
+
+            mb-2
           "
         >
 
-          <!-- PULSE -->
+          <!-- TOP -->
           <div
             class="
-              w-2.5
-              h-2.5
+              flex
+              items-end
+              justify-between
 
-              rounded-full
-
-              bg-[#B89B72]
-
-              animate-pulse
+              gap-4
             "
-          ></div>
+          >
 
-          <!-- TEXT -->
+            <div>
+
+              <p
+                class="
+                  text-[#B89B72]
+
+                  text-[11px]
+
+                  mb-2
+                "
+              >
+                الموقع الاستراتيجي
+              </p>
+
+              <h2
+                class="
+                  text-xl
+                  sm:text-2xl
+
+                  font-bold
+
+                  leading-[1.1]
+
+                  text-white
+                "
+              >
+                في قلب كل ما تحتاجه
+              </h2>
+
+            </div>
+
+            <div
+              class="
+                text-[#B89B72]
+
+                text-3xl
+
+                font-black
+
+                leading-none
+              "
+            >
+              0{{ activePoint + 1 }}
+            </div>
+
+          </div>
+
+          <!-- DESCRIPTION -->
           <p
             class="
-              text-sm
+              mt-3
+
+              text-[11px]
+
+              leading-6
 
               text-white/80
             "
           >
-            حي شرق المنيا — منطقة ذات تميز حضاري
+            يتميز المشروع بموقع استراتيجي
+            يربط بين المنيا القديمة والمنيا الجديدة.
           </p>
+
+          <!-- MOBILE TABS -->
+          <div
+            class="
+              mt-5
+
+              flex
+
+              gap-2
+
+              overflow-x-auto
+
+              pb-1
+
+              scrollbar-hide
+            "
+          >
+
+            <button
+              *ngFor="
+                let point of points;
+                let i = index
+              "
+
+              (click)="changePoint(i)"
+
+              class="
+                shrink-0
+
+                px-3
+                py-2
+
+                rounded-2xl
+
+                border
+
+                text-xs
+
+                transition-all
+                duration-500
+              "
+
+              [ngClass]="{
+
+                'bg-[#7B001C] border-[#7B001C] text-white':
+                  activePoint === i,
+
+                'bg-black/30 border-white/10 text-white/70':
+                  activePoint !== i
+
+              }"
+            >
+
+              {{ point.title }}
+
+            </button>
+
+          </div>
 
         </div>
 

@@ -1,0 +1,82 @@
+/* Mobile-first responsive improvements */
+
+/* Ensure proper full-screen image display on mobile */
+section[id="masterplan"] {
+  width: 100%;
+  height: 100vh;
+}
+
+img[src*="topviewplan"] {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  display: block;
+}
+
+/* Full-screen on mobile - no borders */
+@media (max-width: 767px) {
+  section[id="masterplan"] {
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    border-radius: 0;
+  }
+}
+
+/* Desktop has rounded corners and margins */
+@media (min-width: 768px) {
+  section[id="masterplan"] {
+    height: 100vh;
+  }
+}
+
+/* Improved hover and focus states for accessibility */
+button {
+  transition: all 300ms ease;
+}
+
+button:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.3);
+  outline-offset: 2px;
+}
+
+/* Better text readability on all screen sizes */
+@media (max-width: 768px) {
+  h2, h3, h4 {
+    word-break: break-word;
+  }
+
+  p {
+    word-break: break-word;
+  }
+}
+
+/* Mobile detail card animations */
+@keyframes slideInFromBottom {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-in.slide-in-from-bottom {
+  animation: slideInFromBottom 300ms ease-out;
+}
+
+/* Mobile hotspot scale interaction */
+@media (max-width: 767px) {
+  .active\:scale-95:active {
+    transform: scale(0.95);
+  }
+
+  /* Apply mobile-specific hotspot positions on phone layout */
+  .hotspot-mobile {
+    top: var(--mobile-top) !important;
+    left: var(--mobile-left) !important;
+  }
+}
